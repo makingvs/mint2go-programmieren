@@ -7,8 +7,8 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const run = (cmd, args, cwd = root) => execFileSync(cmd, args, { cwd, stdio: 'inherit', shell: process.platform === 'win32' });
-const out = (cmd, args, cwd = root) => execFileSync(cmd, args, { cwd, encoding: 'utf8', shell: process.platform === 'win32' }).trim();
+const run = (cmd, args, cwd = root) => execFileSync(cmd, args, { cwd, stdio: 'inherit', shell: cmd === 'npm' && process.platform === 'win32' });
+const out = (cmd, args, cwd = root) => execFileSync(cmd, args, { cwd, encoding: 'utf8', shell: cmd === 'npm' && process.platform === 'win32' }).trim();
 
 run('npm', ['run', 'build']);
 const remote = out('git', ['remote', 'get-url', 'origin']);
