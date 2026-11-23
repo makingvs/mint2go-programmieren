@@ -32,6 +32,7 @@ Alle Lizenzen sind permissiv (keine Copyleft-Lizenz wie GPL/AGPL/LGPL). Die Lize
 
 - **Programmcode, Aufgaben, Folientexte, Notizen:** neu geschrieben für dieses Projekt. Gemeinsame Hilfsfunktionen (`src/shared/`: Oberflächen-Helfer, Symbole, Zierelemente, Namen, Rückgängig-Verlauf) stammen aus der Laser-Zeichen-App desselben Autors und sind dort selbst geschrieben.
 - **MINT2Go-Logo und Gestaltung** (`public/mint2go-logo.png`, App-Symbole, Farben, Zahnrad-Zierelemente): gehören MINT2Go. Sie sind **nicht** durch eine freie Lizenz abgedeckt, auch wenn der Code unter einer freien Lizenz stehen sollte.
+- **QR-Code** (`docs/qr-programmieren.*`): mit dem selbst geschriebenen Generator `scripts/make-qr.mjs` erzeugt (keine Fremdbibliothek). „QR Code“ ist eine eingetragene Marke der DENSO WAVE INCORPORATED.
 - **Teaser-Bild** (`docs/teaser.png`): eigene Zeichnung aus App-Elementen, Jost-Schrift und Logo.
 
 ## 5. Erstellung mit KI

@@ -4,6 +4,13 @@ Programmieren lernen für Kinder von 6 bis 10 Jahren, als Web-App für das iPad 
 Lehrerzentriert: Die Lehrkraft führt mit Folien und einem Live-Programm ein, die Kinder üben danach selbst mit Blöcken
 an einem simulierten Roboter.
 
+## Ausprobieren
+
+Die App läuft direkt im Browser, auf dem iPad in Safari (Teilen → „Zum Home-Bildschirm“ für den Vollbild-Modus):
+<https://makingvs.github.io/mint2go-programmieren/>
+
+<img src="docs/qr-programmieren.png" alt="QR-Code zur App: Programmieren lernen, steuere deinen eigenen Roboter" width="370" height="430">
+
 ## Bereiche
 
 - **Unterricht:** 4 Lektionen mit Folien für den Beamer, mit Notizen für die Lehrkraft und Sprungtasten in die App.
