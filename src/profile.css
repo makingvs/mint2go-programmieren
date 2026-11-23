@@ -1,0 +1,102 @@
+/* Profile (Phase 7): Wer bist du?, neues Kind, Klassenübersicht */
+
+/* Fenster mit Eingabefeld oben (die Tastatur des Geräts darf es nicht verdecken) */
+.overlay-top { align-items: flex-start; }
+.overlay-top .panel { max-height: calc(var(--vvh, 100vh) - 36px); }
+
+/* Kind-Marke auf der Startseite */
+.who {
+  align-self: center;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: calc(var(--btn) - 6px);
+  padding: 0 22px 0 12px;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 0 0 3px var(--line) inset, 0 4px 12px rgba(55, 87, 169, 0.12);
+  color: var(--m-navy);
+}
+.who:active { transform: scale(0.97); }
+.who-ico { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-size: 30px; line-height: 1; }
+.who-ico .icon { width: 70%; height: 70%; }
+.who-n { font-size: 24px; font-weight: 700; max-width: 260px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* ---------- Wer bist du? ---------- */
+.p-grid { flex: 1; min-height: 0; overflow-y: auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); align-content: start; gap: 16px; padding: 20px var(--pad); }
+.p-card {
+  height: 170px;
+  border-radius: 28px;
+  background: #fff;
+  box-shadow: 0 0 0 3px var(--line) inset, 0 6px 16px rgba(55, 87, 169, 0.12);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px;
+}
+.p-card:active { transform: scale(0.97); }
+.p-card.on { box-shadow: 0 0 0 5px var(--m-blue) inset; background: var(--blue-tint); }
+.p-ico { font-size: 72px; line-height: 1; }
+.p-ico.plus { width: 80px; height: 80px; border-radius: 50%; background: var(--blue-tint); color: var(--m-blue); display: flex; align-items: center; justify-content: center; font-size: 0; }
+.p-ico.plus .icon { width: 56%; height: 56%; }
+.p-n { font-size: 26px; font-weight: 700; color: var(--ink); max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.p-add { box-shadow: 0 0 0 3px var(--line) inset; background: transparent; }
+
+/* ---------- Neues Kind ---------- */
+.np-panel { width: min(760px, 100%); }
+.name-input {
+  flex: 1;
+  min-width: 0;
+  height: var(--btn);
+  padding: 0 18px;
+  border: 0;
+  border-radius: 18px;
+  background: var(--blue-tint);
+  box-shadow: 0 0 0 3px var(--m-blue) inset;
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--m-navy);
+  outline: none;
+}
+.np-ok { background: var(--green); color: #fff; min-width: calc(var(--btn) + 20px); }
+.an-grid { overflow-y: auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(92px, 1fr)); gap: 10px; padding: 4px; }
+.an-item { height: 92px; border-radius: 22px; background: #eef2f8; font-size: 56px; line-height: 1; display: flex; align-items: center; justify-content: center; }
+.an-item.on { background: var(--blue-tint); box-shadow: 0 0 0 4px var(--m-blue) inset; }
+.an-item:disabled { opacity: 0.25; }
+.an-item:active { transform: scale(0.95); }
+
+/* ---------- Klassenübersicht ---------- */
+.cls-wrap { flex: 1; min-height: 0; overflow: auto; padding: 14px var(--pad) 24px; -webkit-overflow-scrolling: touch; }
+.cls-empty { margin: 40px 0; text-align: center; font-size: 28px; color: var(--muted); }
+.cls-table { border-collapse: separate; border-spacing: 3px; margin: 0 auto; }
+.cls-table th, .cls-table td { padding: 0; text-align: center; }
+.cls-task { width: 34px; height: 34px; border-radius: 10px; background: var(--c); color: #fff; font-size: 16px; font-weight: 700; }
+.cls-name { text-align: left !important; white-space: nowrap; padding-right: 14px !important; min-width: 150px; }
+.cls-name .cls-ico { font-size: 34px; vertical-align: middle; margin-right: 8px; }
+.cls-name .cls-n { font-size: 22px; font-weight: 700; color: var(--ink); vertical-align: middle; }
+.cls-cell { width: 34px; height: 44px; border-radius: 10px; background: #eef2f8; }
+.cls-cell.ok { background: var(--c); color: #fff; }
+.cls-cell .icon { width: 70%; height: 70%; margin: auto; stroke-width: 3.4; }
+.cls-cell.cnt { height: 28px; background: transparent; font-size: 16px; font-weight: 700; color: var(--muted); }
+.cls-sum { font-size: 20px; font-weight: 700; color: var(--m-navy); padding: 0 12px !important; white-space: nowrap; }
+.cls-act { white-space: nowrap; padding-left: 8px !important; }
+.cls-act .btool { width: 48px; height: 48px; margin-left: 6px; border-radius: 14px; background: #eef2f8; color: var(--ink); display: inline-flex; align-items: center; justify-content: center; }
+.cls-act .btool.del { color: var(--red); }
+.cls-act .btool .icon { width: 56%; height: 56%; }
+.cls-foot td { padding-top: 4px; }
+
+@media (max-height: 640px) {
+  .p-card { height: 140px; }
+  .p-ico { font-size: 56px; }
+  .p-n { font-size: 22px; }
+  .an-item { height: 72px; font-size: 44px; }
+  .who { height: 50px; }
+  .who-n { font-size: 20px; }
+}
+
+/* Kind-Marke in der Kopfleiste der Aufgabenliste */
+.who.small { flex: none; padding: 0 16px 0 8px; box-shadow: 0 0 0 3px var(--line) inset; }
+.who.small .who-n { font-size: 20px; max-width: 150px; }
+.who:not(.small) { margin-bottom: 6px; }

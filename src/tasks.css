@@ -1,0 +1,176 @@
+/* Übungsaufgaben (Phase 5): Auswahl, Aufgaben-Fenster, Bedingungs-Symbole, Ziel/Sterne/Hindernisse auf der Bühne */
+
+/* ---------- Startseite: drei Karten ---------- */
+.home-grid .home-card { width: min(340px, 29vw); min-height: 220px; padding: 16px 14px; }
+.home-grid .hc-t { font-size: 30px; }
+.home-grid .hc-s { font-size: 17px; }
+.tasks-card .hc-ico { background: #fdeef5; color: var(--m-pink); }
+.blocks-card .hc-ico { background: #f0f7dc; color: var(--m-green-dark); }
+
+/* ---------- Karten-Vorschau ---------- */
+.mini { width: 100%; height: auto; display: block; border-radius: 12px; }
+
+/* ---------- Auswahl ---------- */
+.tk-title { gap: 18px; align-items: center; }
+.tk-count { display: flex; align-items: center; gap: 8px; font-size: 30px; font-weight: 700; color: var(--m-navy); }
+.tk-star { width: 36px; height: 36px; color: var(--m-orange); display: flex; }
+.tk-star .icon { width: 100%; height: 100%; fill: rgba(240, 160, 48, 0.3); }
+.task-list { flex: 1; min-height: 0; overflow-y: auto; overflow-x: hidden; -webkit-overflow-scrolling: touch; padding: 8px var(--pad) 26px; }
+.tk-level { margin-bottom: 14px; }
+.tk-lh { margin: 10px 4px 10px; display: flex; align-items: center; gap: 12px; font-size: 26px; font-weight: 700; color: var(--ink); }
+.tk-dot { width: 22px; height: 22px; border-radius: 50%; background: var(--c); flex: none; }
+.tk-lc { margin-left: auto; font-size: 20px; color: var(--muted); font-weight: 600; }
+.tk-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; }
+.tk-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px 8px 10px;
+  border-radius: 22px;
+  background: #fff;
+  box-shadow: 0 0 0 3px var(--line) inset, 0 4px 12px rgba(55, 87, 169, 0.1);
+  text-align: center;
+}
+.tk-card:active { transform: scale(0.97); }
+.tk-card.done { box-shadow: 0 0 0 4px var(--green) inset; }
+.tk-map { display: block; }
+.tk-name { font-size: 20px; line-height: 1.1; color: var(--ink); }
+.tk-name b { color: var(--c); }
+.tk-level .tk-name b { color: var(--c); }
+.tk-ok { position: absolute; right: 12px; top: 12px; width: 36px; height: 36px; border-radius: 50%; background: var(--green); color: #fff; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25); }
+.tk-ok .icon { width: 64%; height: 64%; stroke-width: 3.4; }
+
+/* ---------- Bedingungs-Symbole ---------- */
+.task-reqs { gap: 8px; align-items: center; min-width: 0; overflow: hidden; justify-content: center; }
+.task-reqs .tbtn.info { color: var(--m-navy); background: var(--blue-tint); }
+.req-chip {
+  position: relative;
+  flex: none;
+  width: calc(var(--btn) - 4px);
+  height: calc(var(--btn) - 4px);
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 0 0 3px var(--line) inset;
+  color: var(--m-ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+.rc-ico { width: 58%; height: 58%; display: flex; }
+.rc-ico .icon, .rc-ico .led { width: 100%; height: 100%; }
+.rc-badge {
+  position: absolute;
+  left: -4px;
+  bottom: -6px;
+  padding: 0 6px;
+  min-width: 22px;
+  height: 22px;
+  border-radius: 11px;
+  background: var(--m-ink);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 22px;
+  text-align: center;
+}
+.req-chip[data-state='ok'] { background: #eef7d3; box-shadow: 0 0 0 4px var(--green) inset; color: var(--m-green-dark); }
+.req-chip[data-state='no'] { background: #fff0f6; box-shadow: 0 0 0 4px var(--m-pink) inset; color: var(--m-pink); }
+.req-chip[data-state='ok']::after,
+.req-chip[data-state='no']::after {
+  content: '';
+  position: absolute;
+  right: -6px;
+  top: -6px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 62%;
+  animation: pop 0.2s;
+}
+.req-chip[data-state='ok']::after {
+  background-color: var(--green);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m4 12 6 6L20 6'/%3E%3C/svg%3E");
+}
+.req-chip[data-state='no']::after {
+  background-color: var(--m-pink);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.6' stroke-linecap='round'%3E%3Cpath d='M6 6l12 12M18 6 6 18'/%3E%3C/svg%3E");
+}
+
+/* ---------- Aufgaben-Fenster ---------- */
+.task-card {
+  background: var(--panel);
+  border-radius: 30px;
+  padding: 18px 22px 16px;
+  width: min(820px, 100%);
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 0 18px 50px rgba(47, 58, 95, 0.35);
+  animation: pop 0.2s;
+}
+.tc-head { flex: none; display: flex; align-items: center; gap: 14px; }
+.tc-ico { width: 52px; height: 52px; border-radius: 16px; background: #fdeef5; color: var(--m-pink); display: flex; align-items: center; justify-content: center; }
+.tc-ico .icon { width: 62%; height: 62%; }
+.tc-title { margin: 0; font-size: 34px; font-weight: 700; color: var(--m-navy); }
+.tc-body { flex: 1; min-height: 0; overflow-y: auto; display: flex; gap: 18px; align-items: flex-start; }
+.tc-map { flex: none; width: min(46%, 380px); }
+.tc-side { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 12px; }
+.tc-text { margin: 0; font-size: 23px; line-height: 1.25; color: var(--ink); }
+.tc-reqs { display: flex; flex-direction: column; gap: 14px; padding: 4px 0 8px 4px; }
+.tc-req { display: flex; align-items: center; gap: 14px; }
+.tc-rl { font-size: 20px; font-weight: 600; color: var(--ink); line-height: 1.1; }
+.tc-foot { flex: none; display: flex; justify-content: center; }
+
+/* ---------- Erfolg ---------- */
+.success-card {
+  background: var(--panel);
+  border-radius: 32px;
+  padding: 22px 34px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 18px 50px rgba(47, 58, 95, 0.4);
+  animation: pop 0.35s ease-out;
+}
+.sc-star { width: clamp(90px, 22vh, 170px); height: clamp(90px, 22vh, 170px); color: var(--m-orange); display: flex; animation: spin 2.4s ease-in-out infinite; }
+.sc-star .icon { width: 100%; height: 100%; fill: rgba(240, 160, 48, 0.3); stroke-width: 1.4; }
+.sc-t { font-size: clamp(36px, 8vh, 64px); font-weight: 700; color: var(--m-navy); line-height: 1; }
+.sc-s { font-size: 22px; color: var(--muted); }
+.sc-row { display: flex; gap: 14px; margin-top: 8px; }
+
+/* ---------- Bühne: Ziel, Sterne, Hindernisse ---------- */
+.floor .star { transform-box: fill-box; transform-origin: center; transition: opacity 0.25s, transform 0.25s; }
+.floor .star.got { opacity: 0; transform: scale(1.8); }
+.floor .goal { pointer-events: none; }
+
+/* Gewähltes Ereignis-Skript: neue Blöcke kommen hinein */
+.hat.ev { cursor: pointer; }
+.hat.ev.sel { box-shadow: 0 0 0 4px #fff, 0 0 0 8px var(--m-navy); }
+
+/* Palette mit wenigen Reitern */
+.bk-tabs[data-count='1'] { display: none; }
+.bk-tabs[data-count='2'] { grid-template-columns: repeat(2, 1fr); }
+
+@media (max-height: 640px) {
+  .task-card { padding: 12px 18px 12px; gap: 8px; }
+  .task-card .big-btn { height: 64px; }
+  .tc-ico { width: 44px; height: 44px; }
+  .tc-title { font-size: 28px; }
+  .tc-map { width: min(38%, 300px); }
+  .tc-side { gap: 8px; }
+  .tc-text { font-size: 19px; line-height: 1.2; }
+  .tc-rl { font-size: 18px; }
+  .tc-reqs { gap: 12px; padding-bottom: 10px; }
+  .tc-req .req-chip { width: 44px; height: 44px; border-radius: 13px; }
+  .tc-req .rc-badge { height: 20px; min-width: 20px; line-height: 20px; font-size: 13px; }
+  .tk-name { font-size: 18px; }
+  .success-card { padding: 14px 28px 14px; }
+  .sc-star { width: 80px; height: 80px; }
+  .sc-t { font-size: 38px; }
+}
